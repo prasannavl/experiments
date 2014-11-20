@@ -3,17 +3,17 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Benchmarks.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
+using Xunit.Extensions;
 
 namespace Benchmarks
 {
-    [TestClass]
     public class StacksTest
     {
         private const int count = CollectionCommonItems.BenchmarkCount;
         private object _;
 
-        [TestMethod]
+        [Fact]
         public void StackTest()
         {
             var c = new Stack<int>();
@@ -55,7 +55,7 @@ namespace Benchmarks
                 "Stack - Pop and GC");
         }
 
-        [TestMethod]
+        [Fact]
         public void ConcurrentStackTest()
         {
             var c = new ConcurrentStack<int>();
@@ -97,7 +97,7 @@ namespace Benchmarks
                 "ConcurrentStack - Pop and GC");
         }
 
-        [TestMethod]
+        [Fact]
         public void ImmutableStackTest()
         {
             var c = ImmutableStack.Create<int>();

@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Benchmarks.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
+using Xunit.Extensions;
 
 namespace Benchmarks
 {
-    [TestClass]
     public class QueuesTest
     {
         private const int count = CollectionCommonItems.BenchmarkCount;
         private object _;
 
-        [TestMethod]
+        [Fact]
         public void QueueTest()
         {
             var c = new Queue<int>();
@@ -58,7 +58,7 @@ namespace Benchmarks
                 "Queue - Dequeue and GC");
         }
 
-        [TestMethod]
+        [Fact]
         public void ConcurrentQueueTest()
         {
             var c = new ConcurrentQueue<int>();
@@ -100,7 +100,7 @@ namespace Benchmarks
                 "ConcurrentQueue - Dequeue and GC");
         }
 
-        [TestMethod]
+        [Fact]
         public void ImmutableQueueTest()
         {
             var c = ImmutableQueue.Create<int>();

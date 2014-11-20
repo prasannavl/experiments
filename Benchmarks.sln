@@ -5,6 +5,13 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{EA9DBD33-2B9D-4C5E-AFB7-C64FA0D29A9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunner", "TestRunner\TestRunner.csproj", "{D400A13A-3561-496A-AE89-91671AF5EFC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FE0514E6-30CB-42FC-9992-BB39D841BE05}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{EA9DBD33-2B9D-4C5E-AFB7-C64FA0D29A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA9DBD33-2B9D-4C5E-AFB7-C64FA0D29A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA9DBD33-2B9D-4C5E-AFB7-C64FA0D29A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D400A13A-3561-496A-AE89-91671AF5EFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D400A13A-3561-496A-AE89-91671AF5EFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D400A13A-3561-496A-AE89-91671AF5EFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D400A13A-3561-496A-AE89-91671AF5EFC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
