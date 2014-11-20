@@ -36,6 +36,7 @@ namespace TestRunner
 
         private static void Cleanup()
         {
+            _writer.WriteLine(GetEndCodeBlockString());
             if (_writer != null)
             {
                 _writer.Dispose();
@@ -55,11 +56,12 @@ namespace TestRunner
                 _writer = new StreamWriter(stream);
                 var sb = new StringBuilder();
                 sb.AppendLine();
-                sb.AppendLine(DateTimeOffset.Now.ToString() + ":" + Environment.NewLine);
+                sb.AppendLine(new string('#', 6) + DateTimeOffset.Now.ToString() + ":" + Environment.NewLine);
                 var version = Assembly
                     .GetExecutingAssembly()
                     .GetReferencedAssemblies()
                     .First(x => x.Name == "System.Core").Version.ToString();
+                sb.AppendLine(GetStartCodeBlockString());
                 sb.AppendLine("CLR Version: " + Environment.Version);
                 sb.AppendLine(".NET Framework Version: " + version);
                 sb.AppendLine("OS: " + Environment.OSVersion.ToString());
@@ -71,6 +73,16 @@ namespace TestRunner
             {
                 Console.WriteLine("Readme.md file unavailable. Skipping output generation to file.");
             }
+        }
+
+        private static string GetStartCodeBlockString()
+        {
+            return "```";
+        }
+
+        private static string GetEndCodeBlockString()
+        {
+            return GetStartCodeBlockString();
         }
 
         public static void AddLineToOutput(string text)
