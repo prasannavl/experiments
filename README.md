@@ -38,3 +38,38 @@ ConcurrentStack - Pop => Time taken: 00:00:00.7263195
 ConcurrentStack - Pop and GC => Time taken: 00:00:00.8782185
 
 ```
+
+
+######11/20/2014 6:07:09 PM +05:30:
+
+```
+CLR Version: 4.0.30319.0
+.NET Framework Version: 4.0.0.0
+OS: Microsoft Windows NT 6.2.9200.0
+Process architecture: 32-bit
+
+ImmutableQueue - Enqueue => Time taken: 00:00:02.7283684
+ImmutableQueue - Dequeue => Time taken: 00:00:00.3528835
+ImmutableQueue - Dequeue and GC => Time taken: 00:00:00.9972454
+
+ConcurrentQueue - Enqueue => Time taken: 00:00:00.4842570
+ConcurrentQueue - Dequeue => Time taken: 00:00:00.4750043
+ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.4761185
+
+Queue - Enqueue => Time taken: 00:00:00.1557979
+Queue - Dequeue => Time taken: 00:00:00.1480655
+Queue - Dequeue and GC => Time taken: 00:00:00.1508822
+
+ImmutableStack - Push => Time taken: 00:00:01.5310146
+ImmutableStack - Pop => Time taken: 00:00:00.1184662
+ImmutableStack - Pop and GC => Time taken: 00:00:00.4020075
+
+ConcurrentStack - Push => Time taken: 00:00:01.6000714
+ConcurrentStack - Pop => Time taken: 00:00:00.5340629
+ConcurrentStack - Pop and GC => Time taken: 00:00:00.8003574
+
+Stack - Push => Time taken: 00:00:00.1243666
+Stack - Pop => Time taken: 00:00:00.1084168
+Stack - Pop and GC => Time taken: 00:00:00.1077451
+
+```

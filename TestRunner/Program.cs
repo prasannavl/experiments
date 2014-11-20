@@ -20,25 +20,54 @@ namespace TestRunner
         {
             Console.CancelKeyPress += (sender, eventArgs) =>
             {
-                Console.WriteLine("Exiting.");
-                Cleanup();
+                HandleExit(true);
             };
 
+            AppDomain.CurrentDomain.ProcessExit += (sender, eventArgs) =>
+            {
+                HandleExit();
+            };
+
+            RegisterWinCtrlHandlers();
             InitializeOutputWriter();
 
             var logger = new Logger();
             var executor = new ExecutorWrapper(typeof (TestRunnerIdDummy).Assembly.Location, null, false);
             var testRunner = new Xunit.TestRunner(executor, logger);
             var result = testRunner.RunAssembly();
+        }
 
+        private static void RegisterWinCtrlHandlers()
+        {
+#if WINDOWS
+            NativeMethods.SetConsoleCtrlHandler(type =>
+            {
+                switch (type)
+                {
+                    case NativeConstants.CTRL_CLOSE_EVENT:
+                    case NativeConstants.CTRL_LOGOFF_EVENT:
+                    case NativeConstants.CTRL_SHUTDOWN_EVENT:
+                        {
+                            HandleExit(true);
+                            return NativeConstants.TRUE;
+                        }
+                }
+                return NativeConstants.FALSE;
+            }, true);
+#endif
+        }
+
+        private static void HandleExit(bool displayMessage = false)
+        {
+            if (displayMessage) Console.WriteLine(Environment.NewLine + "Exiting");
             Cleanup();
         }
 
         private static void Cleanup()
         {
-            _writer.WriteLine(GetEndCodeBlockString());
             if (_writer != null)
             {
+                _writer.WriteLine(GetEndCodeBlockString());
                 _writer.Dispose();
             }
         }
