@@ -3,7 +3,7 @@ Benchmarks
 
 Arbitrary .NET Framework benchmarks.
 
-#####Auto-generated results (Latest tests towards the end): 
+#####Auto-generated results (Later tests towards the end): 
 
 ######11/20/2014 9:34:50 AM +05:30:
 
