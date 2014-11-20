@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace RedScooby.Common.Tests.Utils
+namespace Benchmarks.Utils
 {
     public class Benchmark
     {
@@ -14,6 +11,8 @@ namespace RedScooby.Common.Tests.Utils
         {
             var i = 0;
             var sw = new Stopwatch();
+
+            // Let the JIT compiler warm up.
             for (i = 0; i < 2; i++)
             {
                 sw.Start();
@@ -34,6 +33,8 @@ namespace RedScooby.Common.Tests.Utils
         {
             var i = 0;
             var sw = new Stopwatch();
+
+            // Let the JIT compiler warm up.
             for (i = 0; i < 2; i++)
             {
                 sw.Start();
@@ -56,6 +57,8 @@ namespace RedScooby.Common.Tests.Utils
         {
             var i = 0;
             var sw = new Stopwatch();
+
+            // Let the JIT compiler warm up.
             for (i = 0; i < 2; i++)
             {
                 sw.Start();

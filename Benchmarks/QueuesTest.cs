@@ -5,8 +5,8 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Benchmarks.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RedScooby.Common.Tests.Utils;
 
 namespace Benchmarks
 {

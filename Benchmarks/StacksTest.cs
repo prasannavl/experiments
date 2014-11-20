@@ -2,8 +2,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using Benchmarks.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RedScooby.Common.Tests.Utils;
 
 namespace Benchmarks
 {
