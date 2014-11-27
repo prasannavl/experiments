@@ -12,6 +12,7 @@ namespace Benchmarks
     public class StateMachines
     {
         private static object s;
+        public int BenchmarkCount = 10000000;
 
         [Fact]
         public void StatelessTest()
@@ -56,7 +57,7 @@ namespace Benchmarks
                 .OnEntryFrom(Trigger.TurnOn, () => { DummyActions.Test("Turning off"); })
                 .OnEntryFrom(Trigger.Ring, () => { DummyActions.Test("Attempting to ring"); });
 
-            Benchmark.Count = 10000000;
+            Benchmark.Count = BenchmarkCount;
 
             Benchmark.Run(() =>
             {
@@ -102,7 +103,7 @@ namespace Benchmarks
 
             var machine = StateMachine.Create(State.Ringing, config);
 
-            Benchmark.Count = 10000000;
+            Benchmark.Count = BenchmarkCount;
 
             Benchmark.Run(() =>
             {
