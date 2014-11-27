@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiquidState">
+      <HintPath>..\packages\LiquidState.1.0.0.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\LiquidState.dll</HintPath>
+    </Reference>
+    <Reference Include="Stateless">
+      <HintPath>..\packages\Stateless.2.5.11.0\lib\portable-net40+sl50+win+wp80\Stateless.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.32.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -59,12 +65,16 @@
     <Compile Include="QueuesTest.cs" />
     <Compile Include="StacksTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateMachines.cs" />
     <Compile Include="TestRunnerIdDummy.cs" />
     <Compile Include="Utils\Benchmark.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionCommonItems.cs" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Types\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
