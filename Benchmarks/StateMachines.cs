@@ -18,43 +18,43 @@ namespace Benchmarks
         {
             var config = new StateMachine<State, Trigger>(State.Ringing);
             config.Configure(State.Off)
-                .OnEntry(() => Console.WriteLine("OnEntry of Off"))
-                .OnExit(() => Console.WriteLine("OnExit of Off"))
+                .OnEntry(() => DummyActions.Test("OnEntry of Off"))
+                .OnExit(() => DummyActions.Test("OnExit of Off"))
                 .PermitReentry(Trigger.TurnOn)
                 .Permit(Trigger.Ring, State.Ringing)
                 .Permit(Trigger.Connect, State.Connected)
-                .OnEntryFrom(Trigger.Ring, () => { Console.WriteLine("Attempting to ring"); })
-                .OnEntryFrom(Trigger.Connect, () => { Console.WriteLine("Connecting"); });
+                .OnEntryFrom(Trigger.Ring, () => { DummyActions.Test("Attempting to ring"); })
+                .OnEntryFrom(Trigger.Connect, () => { DummyActions.Test("Connecting"); });
 
             var connectTriggerWithParameter = config.SetTriggerParameters<string>(Trigger.Connect);
 
             config.Configure(State.Ringing)
-                .OnEntry(() => Console.WriteLine("OnEntry of Ringing"))
-                .OnExit(() => Console.WriteLine("OnExit of Ringing"))
+                .OnEntry(() => DummyActions.Test("OnEntry of Ringing"))
+                .OnExit(() => DummyActions.Test("OnExit of Ringing"))
                 .Permit(Trigger.Connect, State.Connected)
                 .Permit(Trigger.Talk, State.Talking)
                 .OnEntryFrom(connectTriggerWithParameter,
-                    name => { Console.WriteLine("Attempting to connect to " + name); })
-                .OnEntryFrom(Trigger.Talk, () => { Console.WriteLine("Attempting to talk"); });
+                    name => { DummyActions.Test("Attempting to connect to " + name); })
+                .OnEntryFrom(Trigger.Talk, () => { DummyActions.Test("Attempting to talk"); });
 
 
             config.Configure(State.Connected)
-                .OnEntry(() => Console.WriteLine("AOnEntry of Connected"))
-                .OnExit(() => Console.WriteLine("AOnExit of Connected"))
+                .OnEntry(() => DummyActions.Test("AOnEntry of Connected"))
+                .OnExit(() => DummyActions.Test("AOnExit of Connected"))
                 .PermitReentry(Trigger.Connect)
                 .Permit(Trigger.Talk, State.Talking)
                 .Permit(Trigger.TurnOn, State.Off)
-                .OnEntryFrom(Trigger.Talk, () => { Console.WriteLine("Attempting to talk"); })
-                .OnEntryFrom(Trigger.TurnOn, () => { Console.WriteLine("Turning off"); });
+                .OnEntryFrom(Trigger.Talk, () => { DummyActions.Test("Attempting to talk"); })
+                .OnEntryFrom(Trigger.TurnOn, () => { DummyActions.Test("Turning off"); });
 
 
             config.Configure(State.Talking)
-                .OnEntry(() => Console.WriteLine("OnEntry of Talking"))
-                .OnExit(() => Console.WriteLine("OnExit of Talking"))
+                .OnEntry(() => DummyActions.Test("OnEntry of Talking"))
+                .OnExit(() => DummyActions.Test("OnExit of Talking"))
                 .Permit(Trigger.TurnOn, State.Off)
                 .Permit(Trigger.Ring, State.Ringing)
-                .OnEntryFrom(Trigger.TurnOn, () => { Console.WriteLine("Turning off"); })
-                .OnEntryFrom(Trigger.Ring, () => { Console.WriteLine("Attempting to ring"); });
+                .OnEntryFrom(Trigger.TurnOn, () => { DummyActions.Test("Turning off"); })
+                .OnEntryFrom(Trigger.Ring, () => { DummyActions.Test("Attempting to ring"); });
 
             Benchmark.Count = 10000000;
 
@@ -62,7 +62,7 @@ namespace Benchmarks
             {
                 config.Fire(Trigger.Talk);
                 config.Fire(Trigger.Ring);
-            });
+            }, "Synchronous StateMachine - Stateless");
         }
 
         [Fact]
@@ -71,34 +71,34 @@ namespace Benchmarks
             var config = StateMachine.CreateConfiguration<State, Trigger>();
 
             config.Configure(State.Off)
-                .OnEntry(() => Console.WriteLine("OnEntry of Off"))
-                .OnExit(() => Console.WriteLine("OnExit of Off"))
+                .OnEntry(() => DummyActions.Test("OnEntry of Off"))
+                .OnExit(() => DummyActions.Test("OnExit of Off"))
                 .PermitReentry(Trigger.TurnOn)
-                .Permit(Trigger.Ring, State.Ringing, () => { Console.WriteLine("Attempting to ring"); })
-                .Permit(Trigger.Connect, State.Connected, () => { Console.WriteLine("Connecting"); });
+                .Permit(Trigger.Ring, State.Ringing, () => { DummyActions.Test("Attempting to ring"); })
+                .Permit(Trigger.Connect, State.Connected, () => { DummyActions.Test("Connecting"); });
 
             var connectTriggerWithParameter = config.SetTriggerParameter<string>(Trigger.Connect);
 
             config.Configure(State.Ringing)
-                .OnEntry(() => Console.WriteLine("OnEntry of Ringing"))
-                .OnExit(() => Console.WriteLine("OnExit of Ringing"))
+                .OnEntry(() => DummyActions.Test("OnEntry of Ringing"))
+                .OnExit(() => DummyActions.Test("OnExit of Ringing"))
                 .Permit(connectTriggerWithParameter, State.Connected,
-                    name => { Console.WriteLine("Attempting to connect to " + name); })
-                .Permit(Trigger.Talk, State.Talking, () => { Console.WriteLine("Attempting to talk"); });
+                    name => { DummyActions.Test("Attempting to connect to " + name); })
+                .Permit(Trigger.Talk, State.Talking, () => { DummyActions.Test("Attempting to talk"); });
 
             config.Configure(State.Connected)
-                .OnEntry(() => Console.WriteLine("AOnEntry of Connected"))
-                .OnExit(() => Console.WriteLine("AOnExit of Connected"))
+                .OnEntry(() => DummyActions.Test("AOnEntry of Connected"))
+                .OnExit(() => DummyActions.Test("AOnExit of Connected"))
                 .PermitReentry(Trigger.Connect)
-                .Permit(Trigger.Talk, State.Talking, () => { Console.WriteLine("Attempting to talk"); })
-                .Permit(Trigger.TurnOn, State.Off, () => { Console.WriteLine("Turning off"); });
+                .Permit(Trigger.Talk, State.Talking, () => { DummyActions.Test("Attempting to talk"); })
+                .Permit(Trigger.TurnOn, State.Off, () => { DummyActions.Test("Turning off"); });
 
 
             config.Configure(State.Talking)
-                .OnEntry(() => Console.WriteLine("OnEntry of Talking"))
-                .OnExit(() => Console.WriteLine("OnExit of Talking"))
-                .Permit(Trigger.TurnOn, State.Off, () => { Console.WriteLine("Turning off"); })
-                .Permit(Trigger.Ring, State.Ringing, () => { Console.WriteLine("Attempting to ring"); });
+                .OnEntry(() => DummyActions.Test("OnEntry of Talking"))
+                .OnExit(() => DummyActions.Test("OnExit of Talking"))
+                .Permit(Trigger.TurnOn, State.Off, () => { DummyActions.Test("Turning off"); })
+                .Permit(Trigger.Ring, State.Ringing, () => { DummyActions.Test("Attempting to ring"); });
 
             var machine = StateMachine.Create(State.Ringing, config);
 
@@ -108,12 +108,12 @@ namespace Benchmarks
             {
                 machine.Fire(Trigger.Talk);
                 machine.Fire(Trigger.Ring);
-            });
+            }, "Synchronous StateMachines - LiquidState");
         }
 
-        public class Console
+        public class DummyActions
         {
-            public static void WriteLine(string s)
+            public static void Test(string s)
             {
                 StateMachines.s = s;
             }
