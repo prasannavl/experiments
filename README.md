@@ -106,8 +106,8 @@ ConcurrentStack - Push => Time taken: 00:00:01.6053557
 ConcurrentStack - Pop => Time taken: 00:00:00.5422261
 ConcurrentStack - Pop and GC => Time taken: 00:00:00.7395024
 
- => Time taken: 00:00:03.7175233
+Synchronous StateMachines - LiquidState => Time taken: 00:00:03.7175233
 
- => Time taken: 00:00:20.2303716
+Synchronous StateMachine - Stateless => Time taken: 00:00:20.2303716
 
 ```
