@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace Benchmarks
     public class StateMachines
     {
         private static object s;
-        public int BenchmarkCount = 10000000;
+        public int BenchmarkCount = 1;
 
         [Fact]
         public void StatelessTest()

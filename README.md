@@ -149,3 +149,17 @@ Synchronous StateMachine - Stateless => Time taken: 00:00:22.9425084
 Synchronous StateMachines - LiquidState => Time taken: 00:00:03.8172853
 
 ```
+
+######11/29/2014 4:51:32 AM +05:30:
+
+```
+CLR Version: 4.0.30319.0
+.NET Framework Version: 4.0.0.0
+OS: Microsoft Windows NT 6.2.9200.0
+Process architecture: 32-bit
+
+Synchronous StateMachines - LiquidState => Time taken: 00:00:02.5407924
+
+Synchronous StateMachine - Stateless => Time taken: 00:00:22.9038585
+
+```

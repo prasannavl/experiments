@@ -35,8 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiquidState">
-      <HintPath>..\packages\LiquidState.1.0.0.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\LiquidState.dll</HintPath>
+    <Reference Include="LiquidState, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiquidState.1.2.0.0\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\LiquidState.dll</HintPath>
     </Reference>
     <Reference Include="Stateless">
       <HintPath>..\packages\Stateless.2.5.11.0\lib\portable-net40+sl50+win+wp80\Stateless.dll</HintPath>
