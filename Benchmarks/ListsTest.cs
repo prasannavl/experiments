@@ -20,7 +20,7 @@ namespace Benchmarks
 
         public ListsTest()
         {
-            Benchmark.Count = CollectionCommonItems.BenchmarkAvgOf;
+            Benchmark.Count = CollectionCommonItems.BenchmarkIterations;
             Trace.WriteLine("Count: " + count + " * " + Benchmark.Count);
         }
 

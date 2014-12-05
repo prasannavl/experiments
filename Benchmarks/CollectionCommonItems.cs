@@ -9,6 +9,6 @@ namespace Benchmarks
     internal class CollectionCommonItems
     {
         public const int BenchmarkCount = 10000000;
-        public const int BenchmarkAvgOf = 3;
+        public const int BenchmarkIterations = 3;
     }
 }

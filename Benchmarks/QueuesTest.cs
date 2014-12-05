@@ -19,7 +19,7 @@ namespace Benchmarks
 
         public QueuesTest()
         {
-            Benchmark.Count = CollectionCommonItems.BenchmarkAvgOf;
+            Benchmark.Count = CollectionCommonItems.BenchmarkIterations;
             Trace.WriteLine("Count: " + count + " * " + Benchmark.Count);
         }
 
