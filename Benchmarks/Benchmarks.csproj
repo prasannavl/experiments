@@ -69,15 +69,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StateMachines.cs" />
     <Compile Include="TestRunnerIdDummy.cs" />
+    <Compile Include="Types\SynchronizedList.cs" />
     <Compile Include="Utils\Benchmark.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionCommonItems.cs" />
     <None Include="packages.config" />
+    <Compile Include="Types\Mono.ConcurrentQueue.cs" />
+    <Compile Include="Types\Mono.ConcurrentStack.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Types\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

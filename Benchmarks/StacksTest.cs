@@ -105,6 +105,48 @@ namespace Benchmarks
         }
 
         [Fact]
+        public void MonoConcurrentStackTest()
+        {
+            var c = new Mono.ConcurrentStack<int>();
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    c.Push(i);
+                }
+                _ = c;
+            }, () => { c = new Mono.ConcurrentStack<int>(); }
+                , "Mono - ConcurrentStack - Push");
+
+            var current = (Mono.ConcurrentStack<int>)_;
+            c = new Mono.ConcurrentStack<int>(current);
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int res;
+                    c.TryPop(out res);
+                    _ = res;
+                }
+            }, () => { c = new Mono.ConcurrentStack<int>(current); },
+                "Mono - ConcurrentStack - Pop");
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int res;
+                    c.TryPop(out res);
+                    _ = res;
+                }
+                GC.Collect();
+            }, () => { c = new Mono.ConcurrentStack<int>(current); },
+                "Mono - ConcurrentStack - Pop and GC");
+        }
+
+        [Fact]
         public void ImmutableStackTest()
         {
             var c = ImmutableStack.Create<int>();

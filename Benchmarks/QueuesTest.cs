@@ -108,6 +108,48 @@ namespace Benchmarks
         }
 
         [Fact]
+        public void MonoConcurrentQueueTest()
+        {
+            var c = new Mono.ConcurrentQueue<int>();
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    c.Enqueue(i);
+                }
+                _ = c;
+            }, () => { c = new Mono.ConcurrentQueue<int>(); },
+                "Mono - ConcurrentQueue - Enqueue");
+
+            var current = (Mono.ConcurrentQueue<int>)_;
+            c = new Mono.ConcurrentQueue<int>(current);
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int res;
+                    c.TryDequeue(out res);
+                    _ = res;
+                }
+            }, () => { c = new Mono.ConcurrentQueue<int>(current); },
+                "Mono - ConcurrentQueue - Dequeue");
+
+            Benchmark.Run(() =>
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    int res;
+                    c.TryDequeue(out res);
+                    _ = res;
+                }
+                GC.Collect();
+            }, () => { c = new Mono.ConcurrentQueue<int>(current); },
+                "Mono - ConcurrentQueue - Dequeue and GC");
+        }
+
+        [Fact]
         public void ImmutableQueueTest()
         {
             var c = ImmutableQueue.Create<int>();
