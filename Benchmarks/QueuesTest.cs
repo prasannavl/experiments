@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,12 @@ namespace Benchmarks
     {
         private const int count = CollectionCommonItems.BenchmarkCount;
         private object _;
+
+        public QueuesTest()
+        {
+            Benchmark.Count = CollectionCommonItems.BenchmarkAvgOf;
+            Trace.WriteLine("Count: " + count + " * " + Benchmark.Count);
+        }
 
         [Fact]
         public void QueueTest()

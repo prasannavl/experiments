@@ -3,9 +3,11 @@ Benchmarks
 
 Arbitrary .NET Framework benchmarks.
 
+**Note:** This is not meant to be a speed test. This is to *understand the efficieny of the algorithms*, and giving a timemark to it for visualization of the results.
+
 #####Auto-generated results (Later tests towards the end): 
 
-######11/20/2014 9:34:50 AM +05:30:
+######12/5/2014 8:54:31 AM +05:30:
 
 ```
 CLR Version: 4.0.30319.0
@@ -13,153 +15,54 @@ CLR Version: 4.0.30319.0
 OS: Microsoft Windows NT 6.2.9200.0
 Process architecture: 32-bit
 
-ConcurrentQueue - Enqueue => Time taken: 00:00:00.4461729
-ConcurrentQueue - Dequeue => Time taken: 00:00:00.4532286
-ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.5386264
+Count: 10000000 * 3
+ConcurrentBag - Add => Time taken: 00:00:07.2154686
+ConcurrentBag - Take (through element) => Time taken: 00:00:02.9651258
+ConcurrentBag - Take (through element) and GC => Time taken: 00:00:03.4934530
 
-ImmutableQueue - Enqueue => Time taken: 00:00:02.8014614
-ImmutableQueue - Dequeue => Time taken: 00:00:00.3739427
-ImmutableQueue - Dequeue and GC => Time taken: 00:00:01.1058990
+Count: 10000000 * 3
+ImmutableList - Add => Time taken: 00:00:57.9583883
+ImmutableList - Remove from end (through index) => Time taken: 00:00:31.7743593
+ImmutableList - Remove from end (through index), and GC => Time taken: 00:00:33.0795918
 
-Queue - Enqueue => Time taken: 00:00:00.1790362
-Queue - Dequeue => Time taken: 00:00:00.1723148
-Queue - Dequeue and GC => Time taken: 00:00:00.1782703
+Count: 10000000 * 3
+List - Add => Time taken: 00:00:00.2776642
+List - Remove from end (through index) => Time taken: 00:00:00.1602011
 
-ImmutableStack - Push => Time taken: 00:00:01.8125969
-ImmutableStack - Pop => Time taken: 00:00:00.1352050
-ImmutableStack - Pop and GC => Time taken: 00:00:00.4924860
+Count: 10000000 * 3
+ConcurrentQueue - Enqueue => Time taken: 00:00:01.4034601
+ConcurrentQueue - Dequeue => Time taken: 00:00:00.8869759
+ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.9267536
 
-Stack - Push => Time taken: 00:00:00.1107729
-Stack - Pop => Time taken: 00:00:00.1390815
-Stack - Pop and GC => Time taken: 00:00:00.1312529
+Count: 10000000 * 3
+Queue - Enqueue => Time taken: 00:00:00.4907369
+Queue - Dequeue => Time taken: 00:00:00.3877181
+Queue - Dequeue and GC => Time taken: 00:00:00.4517926
 
-ConcurrentStack - Push => Time taken: 00:00:01.9028655
-ConcurrentStack - Pop => Time taken: 00:00:00.7263195
-ConcurrentStack - Pop and GC => Time taken: 00:00:00.8782185
+Count: 10000000 * 3
+ImmutableQueue - Enqueue => Time taken: 00:00:07.9802526
+ImmutableQueue - Dequeue => Time taken: 00:00:00.9137694
+ImmutableQueue - Dequeue and GC => Time taken: 00:00:02.8389212
 
-```
+Count: 10000000 * 3
+ConcurrentStack - Push => Time taken: 00:00:05.2665492
+ConcurrentStack - Pop => Time taken: 00:00:00.5787926
+ConcurrentStack - Pop and GC => Time taken: 00:00:02.6736588
 
+Count: 10000000 * 3
+ImmutableStack - Push => Time taken: 00:00:06.2855050
+ImmutableStack - Pop => Time taken: 00:00:00.3340684
+ImmutableStack - Pop and GC => Time taken: 00:00:01.2533328
 
-######11/20/2014 6:07:09 PM +05:30:
+Count: 10000000 * 3
+Stack - Push => Time taken: 00:00:00.2768707
+Stack - Pop => Time taken: 00:00:00.2691504
+Stack - Pop and GC => Time taken: 00:00:00.3295845
 
-```
-CLR Version: 4.0.30319.0
-.NET Framework Version: 4.0.0.0
-OS: Microsoft Windows NT 6.2.9200.0
-Process architecture: 32-bit
+Count: 10000000
+Synchronous StateMachines - LiquidState => Time taken: 00:00:02.0582818
 
-ImmutableQueue - Enqueue => Time taken: 00:00:02.7283684
-ImmutableQueue - Dequeue => Time taken: 00:00:00.3528835
-ImmutableQueue - Dequeue and GC => Time taken: 00:00:00.9972454
-
-ConcurrentQueue - Enqueue => Time taken: 00:00:00.4842570
-ConcurrentQueue - Dequeue => Time taken: 00:00:00.4750043
-ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.4761185
-
-Queue - Enqueue => Time taken: 00:00:00.1557979
-Queue - Dequeue => Time taken: 00:00:00.1480655
-Queue - Dequeue and GC => Time taken: 00:00:00.1508822
-
-ImmutableStack - Push => Time taken: 00:00:01.5310146
-ImmutableStack - Pop => Time taken: 00:00:00.1184662
-ImmutableStack - Pop and GC => Time taken: 00:00:00.4020075
-
-ConcurrentStack - Push => Time taken: 00:00:01.6000714
-ConcurrentStack - Pop => Time taken: 00:00:00.5340629
-ConcurrentStack - Pop and GC => Time taken: 00:00:00.8003574
-
-Stack - Push => Time taken: 00:00:00.1243666
-Stack - Pop => Time taken: 00:00:00.1084168
-Stack - Pop and GC => Time taken: 00:00:00.1077451
-
-```
-
-######11/27/2014 9:02:27 AM +05:30:
-
-```
-CLR Version: 4.0.30319.0
-.NET Framework Version: 4.0.0.0
-OS: Microsoft Windows NT 6.2.9200.0
-Process architecture: 32-bit
-
-Queue - Enqueue => Time taken: 00:00:00.1575948
-Queue - Dequeue => Time taken: 00:00:00.1511023
-Queue - Dequeue and GC => Time taken: 00:00:00.1464150
-
-ConcurrentQueue - Enqueue => Time taken: 00:00:00.4654330
-ConcurrentQueue - Dequeue => Time taken: 00:00:00.4772408
-ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.4483767
-
-ImmutableQueue - Enqueue => Time taken: 00:00:02.6467576
-ImmutableQueue - Dequeue => Time taken: 00:00:00.3501882
-ImmutableQueue - Dequeue and GC => Time taken: 00:00:00.9149150
-
-Stack - Push => Time taken: 00:00:00.0836351
-Stack - Pop => Time taken: 00:00:00.0964436
-Stack - Pop and GC => Time taken: 00:00:00.1065405
-
-ImmutableStack - Push => Time taken: 00:00:01.5473170
-ImmutableStack - Pop => Time taken: 00:00:00.1076592
-ImmutableStack - Pop and GC => Time taken: 00:00:00.4477467
-
-ConcurrentStack - Push => Time taken: 00:00:01.6053557
-ConcurrentStack - Pop => Time taken: 00:00:00.5422261
-ConcurrentStack - Pop and GC => Time taken: 00:00:00.7395024
-
-Synchronous StateMachines - LiquidState => Time taken: 00:00:03.7175233
-
-Synchronous StateMachine - Stateless => Time taken: 00:00:20.2303716
-
-```
-
-######11/27/2014 9:07:38 AM +05:30:
-
-```
-CLR Version: 4.0.30319.0
-.NET Framework Version: 4.0.0.0
-OS: Microsoft Windows NT 6.2.9200.0
-Process architecture: 32-bit
-
-Queue - Enqueue => Time taken: 00:00:00.1657948
-Queue - Dequeue => Time taken: 00:00:00.1638762
-Queue - Dequeue and GC => Time taken: 00:00:00.1621121
-
-ConcurrentQueue - Enqueue => Time taken: 00:00:00.4633123
-ConcurrentQueue - Dequeue => Time taken: 00:00:00.4750572
-ConcurrentQueue - Dequeue and GC => Time taken: 00:00:00.4727177
-
-ImmutableQueue - Enqueue => Time taken: 00:00:02.9545214
-ImmutableQueue - Dequeue => Time taken: 00:00:00.3422864
-ImmutableQueue - Dequeue and GC => Time taken: 00:00:00.9894739
-
-Stack - Push => Time taken: 00:00:00.0978542
-Stack - Pop => Time taken: 00:00:00.1346336
-Stack - Pop and GC => Time taken: 00:00:00.1253693
-
-ConcurrentStack - Push => Time taken: 00:00:01.6758289
-ConcurrentStack - Pop => Time taken: 00:00:00.6592928
-ConcurrentStack - Pop and GC => Time taken: 00:00:00.8098525
-
-ImmutableStack - Push => Time taken: 00:00:01.4849790
-ImmutableStack - Pop => Time taken: 00:00:00.1479270
-ImmutableStack - Pop and GC => Time taken: 00:00:00.4017121
-
-Synchronous StateMachine - Stateless => Time taken: 00:00:22.9425084
-
-Synchronous StateMachines - LiquidState => Time taken: 00:00:03.8172853
-
-```
-
-######11/29/2014 4:51:32 AM +05:30:
-
-```
-CLR Version: 4.0.30319.0
-.NET Framework Version: 4.0.0.0
-OS: Microsoft Windows NT 6.2.9200.0
-Process architecture: 32-bit
-
-Synchronous StateMachines - LiquidState => Time taken: 00:00:02.5407924
-
-Synchronous StateMachine - Stateless => Time taken: 00:00:22.9038585
+Count: 10000000
+Synchronous StateMachines - Stateless => Time taken: 00:00:20.9230991
 
 ```

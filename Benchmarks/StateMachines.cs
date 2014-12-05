@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,13 @@ namespace Benchmarks
     public class StateMachines
     {
         private static object s;
-        public int BenchmarkCount = 1;
+        public int BenchmarkCount = 10000000;
+
+        public StateMachines()
+        {
+            Benchmark.Count = BenchmarkCount;
+            Trace.WriteLine("Count: " + BenchmarkCount);
+        }
 
         [Fact]
         public void StatelessTest()
@@ -58,13 +65,12 @@ namespace Benchmarks
                 .OnEntryFrom(Trigger.TurnOn, () => { DummyActions.Test("Turning off"); })
                 .OnEntryFrom(Trigger.Ring, () => { DummyActions.Test("Attempting to ring"); });
 
-            Benchmark.Count = BenchmarkCount;
 
             Benchmark.Run(() =>
             {
                 config.Fire(Trigger.Talk);
                 config.Fire(Trigger.Ring);
-            }, "Synchronous StateMachine - Stateless");
+            }, "Synchronous StateMachines - Stateless");
         }
 
         [Fact]
@@ -104,7 +110,6 @@ namespace Benchmarks
 
             var machine = StateMachine.Create(State.Ringing, config);
 
-            Benchmark.Count = BenchmarkCount;
 
             Benchmark.Run(() =>
             {

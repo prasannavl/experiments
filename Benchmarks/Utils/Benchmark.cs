@@ -6,7 +6,7 @@ namespace Benchmarks.Utils
 {
     public class Benchmark
     {
-        public static int Count = 10;
+        public static int Count = 3;
         public static void Run(Action action, string label = "")
         {
             var i = 0;

@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using Benchmarks.Utils;
 using Xunit;
 using Xunit.Extensions;
@@ -12,6 +13,12 @@ namespace Benchmarks
     {
         private const int count = CollectionCommonItems.BenchmarkCount;
         private object _;
+
+        public StacksTest()
+        {
+            Benchmark.Count = CollectionCommonItems.BenchmarkAvgOf;
+            Trace.WriteLine("Count: " + count + " * " + Benchmark.Count);
+        }
 
         [Fact]
         public void StackTest()
