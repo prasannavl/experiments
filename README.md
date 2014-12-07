@@ -290,3 +290,84 @@ Count: 10000000
 Synchronous StateMachines - LiquidState => Time taken: 00:00:02.1770625
 
 ```
+
+
+######12/7/2014 6:50:30 PM +05:30:
+
+```
+CLR Version: 4.0.30319.0
+.NET Framework Version: 4.0.0.0
+OS: Microsoft Windows NT 6.2.9200.0
+Process architecture: 32-bit
+
+Count: 10000000 * 3
+SynchronizedList (No contention) - Add => Time taken: 00:00:01.2363450
+SynchronizedList (No contention) - Remove from end (through index) => Time taken: 00:00:02.2440377
+
+Count: 10000000 * 3
+ConcurrentBag - Add => Time taken: 00:00:06.6482112
+ConcurrentBag - Take (through element) => Time taken: 00:00:02.9352847
+ConcurrentBag - Take (through element) and GC => Time taken: 00:00:04.1729416
+
+Count: 10000000 * 3
+ImmutableList - Add => Time taken: 00:00:59.6097793
+ImmutableList - Remove from end (through index) => Time taken: 00:00:34.2195985
+ImmutableList - Remove from end (through index), and GC => Time taken: 00:00:34.3504281
+
+Count: 10000000 * 3
+List - Add => Time taken: 00:00:00.3054654
+List - Remove from end (through index) => Time taken: 00:00:00.1569578
+
+Count: 10000000 * 3
+ImmutableQueue - Enqueue => Time taken: 00:00:08.0163244
+ImmutableQueue - Dequeue => Time taken: 00:00:01.0824888
+ImmutableQueue - Dequeue and GC => Time taken: 00:00:03.0555715
+
+Count: 10000000 * 3
+Queue - Enqueue => Time taken: 00:00:00.5078171
+Queue - Dequeue => Time taken: 00:00:00.4052043
+Queue - Dequeue and GC => Time taken: 00:00:00.4567384
+
+Count: 10000000 * 3
+ConcurrentQueue - Enqueue => Time taken: 00:00:01.4480745
+ConcurrentQueue - Dequeue => Time taken: 00:00:00.8953819
+ConcurrentQueue - Dequeue and GC => Time taken: 00:00:01.0622391
+
+Count: 10000000 * 3
+Mono - ConcurrentQueue - Enqueue => Time taken: 00:00:05.3231222
+Mono - ConcurrentQueue - Dequeue => Time taken: 00:00:02.1715727
+Mono - ConcurrentQueue - Dequeue and GC => Time taken: 00:00:03.4943594
+
+Count: 10000000 * 3
+ConcurrentStack - Push => Time taken: 00:00:05.1152602
+ConcurrentStack - Pop => Time taken: 00:00:01.4471309
+ConcurrentStack - Pop and GC => Time taken: 00:00:02.7833272
+
+Count: 10000000 * 3
+Mono - ConcurrentStack - Push => Time taken: 00:00:05.8277569
+Mono - ConcurrentStack - Pop => Time taken: 00:00:01.5272296
+Mono - ConcurrentStack - Pop and GC => Time taken: 00:00:02.3220695
+
+Count: 10000000 * 3
+Stack - Push => Time taken: 00:00:00.6786540
+Stack - Pop => Time taken: 00:00:00.4225121
+Stack - Pop and GC => Time taken: 00:00:00.3341043
+
+Count: 10000000 * 3
+ImmutableStack - Push => Time taken: 00:00:04.7778714
+ImmutableStack - Pop => Time taken: 00:00:00.5517862
+ImmutableStack - Pop and GC => Time taken: 00:00:01.5316154
+
+Count: 10000000
+Synchronous StateMachines - LiquidState (Task/Async Awaitable) => Time taken: 00:00:13.9579566
+
+Count: 10000000
+Asynchronous StateMachines - LiquidState => Time taken: 00:00:19.4116743
+
+Count: 10000000
+Synchronous StateMachines - LiquidState => Time taken: 00:00:02.2374253
+
+Count: 10000000
+Synchronous StateMachines - Stateless => Time taken: 00:00:21.5919263
+
+```

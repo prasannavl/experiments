@@ -118,6 +118,97 @@ namespace Benchmarks
             }, "Synchronous StateMachines - LiquidState");
         }
 
+        [Fact]
+        public void LiquidStateAwaitableSyncTest()
+        {
+            var config = StateMachine.CreateAwaitableConfiguration<State, Trigger>();
+
+            config.Configure(State.Off)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Off"))
+                .OnExit(async () => DummyActions.Test("OnExit of Off"))
+                .PermitReentry(Trigger.TurnOn)
+                .Permit(Trigger.Ring, State.Ringing, async () => { DummyActions.Test("Attempting to ring"); })
+                .Permit(Trigger.Connect, State.Connected, async () => { DummyActions.Test("Connecting"); });
+
+            var connectTriggerWithParameter = config.SetTriggerParameter<string>(Trigger.Connect);
+
+            config.Configure(State.Ringing)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Ringing"))
+                .OnExit(async () => DummyActions.Test("OnExit of Ringing"))
+                .Permit(connectTriggerWithParameter, State.Connected,
+                    async name => { DummyActions.Test("Attempting to connect to " + name); })
+                .Permit(Trigger.Talk, State.Talking, async () => { DummyActions.Test("Attempting to talk"); });
+
+            config.Configure(State.Connected)
+                .OnEntry(async () => DummyActions.Test("AOnEntry of Connected"))
+                .OnExit(async () => DummyActions.Test("AOnExit of Connected"))
+                .PermitReentry(Trigger.Connect)
+                .Permit(Trigger.Talk, State.Talking, async () => { DummyActions.Test("Attempting to talk"); })
+                .Permit(Trigger.TurnOn, State.Off, async () => { DummyActions.Test("Turning off"); });
+
+
+            config.Configure(State.Talking)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Talking"))
+                .OnExit(async () => DummyActions.Test("OnExit of Talking"))
+                .Permit(Trigger.TurnOn, State.Off, async () => { DummyActions.Test("Turning off"); })
+                .Permit(Trigger.Ring, State.Ringing, async () => { DummyActions.Test("Attempting to ring"); });
+
+            var machine = StateMachine.Create(State.Ringing, config, asyncMachine: false);
+
+
+            Benchmark.RunAsync(async () =>
+            {
+                await machine.FireAsync(Trigger.Talk);
+                await machine.FireAsync(Trigger.Ring);
+            }, "Synchronous StateMachines - LiquidState (Task/Async Awaitable)").Wait();
+        }
+
+        [Fact]
+        public void LiquidStateAsyncTest()
+        {
+            var config = StateMachine.CreateAwaitableConfiguration<State, Trigger>();
+
+
+            config.Configure(State.Off)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Off"))
+                .OnExit(async () => DummyActions.Test("OnExit of Off"))
+                .PermitReentry(Trigger.TurnOn)
+                .Permit(Trigger.Ring, State.Ringing, async () => { DummyActions.Test("Attempting to ring"); })
+                .Permit(Trigger.Connect, State.Connected, async () => { DummyActions.Test("Connecting"); });
+
+            var connectTriggerWithParameter = config.SetTriggerParameter<string>(Trigger.Connect);
+
+            config.Configure(State.Ringing)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Ringing"))
+                .OnExit(async () => DummyActions.Test("OnExit of Ringing"))
+                .Permit(connectTriggerWithParameter, State.Connected,
+                    async name => { DummyActions.Test("Attempting to connect to " + name); })
+                .Permit(Trigger.Talk, State.Talking, async () => { DummyActions.Test("Attempting to talk"); });
+
+            config.Configure(State.Connected)
+                .OnEntry(async () => DummyActions.Test("AOnEntry of Connected"))
+                .OnExit(async () => DummyActions.Test("AOnExit of Connected"))
+                .PermitReentry(Trigger.Connect)
+                .Permit(Trigger.Talk, State.Talking, async () => { DummyActions.Test("Attempting to talk"); })
+                .Permit(Trigger.TurnOn, State.Off, async () => { DummyActions.Test("Turning off"); });
+
+
+            config.Configure(State.Talking)
+                .OnEntry(async () => DummyActions.Test("OnEntry of Talking"))
+                .OnExit(async () => DummyActions.Test("OnExit of Talking"))
+                .Permit(Trigger.TurnOn, State.Off, async () => { DummyActions.Test("Turning off"); })
+                .Permit(Trigger.Ring, State.Ringing, async () => { DummyActions.Test("Attempting to ring"); });
+
+            var machine = StateMachine.Create(State.Ringing, config, asyncMachine: true);
+
+
+            Benchmark.RunAsync(async () =>
+            {
+                await machine.FireAsync(Trigger.Talk);
+                await machine.FireAsync(Trigger.Ring);
+            }, "Asynchronous StateMachines - LiquidState").Wait();
+        }
+
         public class DummyActions
         {
             public static void Test(string s)
