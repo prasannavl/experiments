@@ -5,9 +5,9 @@ Arbitrary .NET Framework benchmarks.
 
 **Note:** This is not meant to be a speed test. This is to *understand the efficieny of the algorithms*, and giving a timemark to it for visualization of the results.
 
-#####Auto-generated results (Later tests towards the end): 
+##### Auto-generated results (Later tests towards the end): 
 
-######12/5/2014 8:54:31 AM +05:30:
+###### 12/5/2014 8:54:31 AM +05:30:
 
 ```
 CLR Version: 4.0.30319.0
@@ -67,7 +67,7 @@ Synchronous StateMachines - Stateless => Time taken: 00:00:20.9230991
 
 ```
 
-######12/5/2014 10:55:02 AM +05:30:
+###### 12/5/2014 10:55:02 AM +05:30:
 
 ```
 CLR Version: 4.0.30319.0
@@ -141,7 +141,7 @@ Synchronous StateMachines - LiquidState => Time taken: 00:00:02.3190077
 
 ```
 
-######12/5/2014 11:49:28 AM +05:30:
+###### 12/5/2014 11:49:28 AM +05:30:
 
 **Nominal number of medium sized collections test:**
 
@@ -215,7 +215,7 @@ Synchronous StateMachines - Stateless => Time taken: 00:00:21.2445586
 ```
 
 
-######12/5/2014 11:52:45 AM +05:30:
+###### 12/5/2014 11:52:45 AM +05:30:
 
 **Large number of small sized collections test:**
 
@@ -292,7 +292,7 @@ Synchronous StateMachines - LiquidState => Time taken: 00:00:02.1770625
 ```
 
 
-######12/7/2014 6:50:30 PM +05:30:
+###### 12/7/2014 6:50:30 PM +05:30:
 
 ```
 CLR Version: 4.0.30319.0

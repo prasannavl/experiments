@@ -85,7 +85,7 @@ namespace TestRunner
                 _writer = new StreamWriter(stream);
                 var sb = new StringBuilder();
                 sb.AppendLine();
-                sb.AppendLine(new string('#', 6) + DateTimeOffset.Now.ToString() + ":" + Environment.NewLine);
+                sb.AppendLine(new string('#', 6) + " " + DateTimeOffset.Now.ToString() + ":" + Environment.NewLine);
                 var version = Assembly
                     .GetExecutingAssembly()
                     .GetReferencedAssemblies()
